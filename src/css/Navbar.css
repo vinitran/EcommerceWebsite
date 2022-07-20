@@ -1,0 +1,118 @@
+.navbox{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 25px;
+}
+.navbox .leftside {
+    width: 60px;
+    height: 60px;
+    flex-direction: row;
+    display: flex;
+}
+.wrapper-nav-item {
+    margin-left: 40px;
+    flex-direction: row;
+    display: flex;
+}
+.nav-item {
+    padding: 25px 25px;
+    align-items: center;
+    display: flex;
+}
+.nav-item:hover .item{
+    color: rgba(255, 255, 255, 0.8);
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+}
+.item{
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
+} 
+.link{
+    text-decoration: none;
+}
+.rightside .link{
+    margin: 5px;
+    text-decoration: none;
+    padding: 10px;
+}
+.navbox .leftside .logo {
+    color: rgb(254, 128, 51, 0.9);
+    font-family: 'Dancing Script', cursive;
+}
+.navbox .leftside .logo:hover {
+    color: rgb(254, 128, 51, 1);
+    -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+}
+.navbox .rightside {
+    display: flex;
+    flex-direction: row;
+}
+.navbox .rightside .button{
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(69, 76, 90, 0.3);
+    font-weight: 600;
+    border-radius: 10px;
+    border-color: transparent;
+    padding: 5px 5px 5px 5px;
+}
+.navbox .rightside .button:hover {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);;
+    background-color: #fe8134;
+    font-weight: 600;
+    margin: auto 10px;
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+}
+.dropbtn {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .dropbtn h1{
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(69, 76, 90, 0.3);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: rgba(255, 255, 255, 0.6);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    right: 0;
+  }
+  .dropbtn:hover h1{
+    color: rgba(255, 255, 255, 0.9);
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+  .dropdown-content a:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #fe8134;
+}
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }

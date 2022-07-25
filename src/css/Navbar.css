@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 7px 25px;
+    padding: 5px 50px 5px 50px;
 }
 .navbox .leftside {
     width: 60px;
@@ -60,7 +61,7 @@
     font-weight: 600;
     border-radius: 10px;
     border-color: transparent;
-    padding: 5px 5px 5px 5px;
+    padding: 5px;
 }
 .navbox .rightside .button:hover {
     font-size: 12px;

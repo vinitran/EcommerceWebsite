@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Navbar from './Navbar';
+import '../css/Common.css';
 
 export const AddProduct = () => {
     const [productName, setProductName] = useState('');
@@ -24,39 +26,38 @@ export const AddProduct = () => {
     }
 
     return (
-        <div className="container">
-            <h2 className="mt-3">ADD PRODUCT</h2>
-            <hr />
-            <form
-                autoComplete="off"
-                className="form-group"
-                onSubmit={addProduct}
-            >
-                <label htmlFor="product-name" className="mt-2"> Product Name</label>
-                <input
-                    type="text"
-                    className="form-control mt-1"
-                    required
-                    onChange={(e) => setProductName(e.target.value)}
-                    value={productName}
-                />
-                <label htmlFor="product-price" className="mt-2"> Product Price</label>
-                <input
-                    type="number"
-                    className="form-control mt-1"
-                    required
-                    onChange={(e) => setProductPrice(e.target.value)}
-                    value={productPrice}
-                />
-                <label htmlFor="product-img" className="mt-2"> Product Image</label>
-                <input
-                    type="file"
-                    className="form-control mt-1"
-                    onChange={productImgHandler}
-                />
-                <button className="btn btn-success btn-md w-100 mt-3">ADD</button>
-            </form>
-            {error && <span>{error}</span>}
+        <div className="container-signup">
+            <Navbar />
+            <div className="container-form">
+                <form
+                    autoComplete="off"
+                    className="form-group w-100"
+                    onSubmit={addProduct}
+                >
+                    <h1>Add Product</h1>
+                    <label htmlFor="product-name" > Product Name</label>
+                    <input
+                        type="text"
+                        required
+                        onChange={(e) => setProductName(e.target.value)}
+                        value={productName}
+                    />
+                    <label htmlFor="product-price" > Product Price</label>
+                    <input
+                        type="number"
+                        required
+                        onChange={(e) => setProductPrice(e.target.value)}
+                        value={productPrice}
+                    />
+                    <label htmlFor="product-img"> Product Image</label>
+                    <input
+                        type="file"
+                        onChange={productImgHandler}
+                    />
+                    <button>ADD</button>
+                </form>
+                {error && <span>{error}</span>}
+            </div>
         </div>
     )
 }

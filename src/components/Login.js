@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar';
-import '../css/SignUp.css';
+import '../css/Common.css';
 export const Login = () => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
@@ -22,23 +22,22 @@ export const Login = () => {
                     className="form-group w-100"
                     onSubmit={addProduct}
                 >
-                    <label htmlFor="account" className="mt-2 label">Email or mobile phone number</label>
+                    <h1>Login</h1>
+                    <label htmlFor="account">Email or mobile phone number</label>
                     <input
                         type="text"
-                        className="form mt-1"
                         required
                         onChange={(e) => setAccount(e.target.value)}
                         value={account}
                     />
-                    <label htmlFor="password" className="mt-2 label">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
-                        className="form mt-1"
                         required
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
                     />
-                    <button className="button mt-4">LOGIN</button>
+                    <button>LOGIN</button>
                 </form>
             </div>
         </div>

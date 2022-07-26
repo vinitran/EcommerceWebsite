@@ -5,7 +5,7 @@ export const ProductItem = (props) => {
   // console.log(props.product);
   return (
       props.product ?
-        <Link to={`/${props.product.id}`} params={props} className="link">
+        <Link to={`/${props.product.id}`} className="link">
           <div className="product-card">
             <div className="card_img">
               <img src={props.product.thumb} />

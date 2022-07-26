@@ -2,14 +2,34 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar';
 import '../css/Common.css';
+import { handleLoginApi } from '../services/userService';
 export const Login = () => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [errMessage, setErrMessage] = useState('');
 
     const types = ['image/png', 'image/jpeg']
-    const addProduct = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
+        try {
+            let data = await handleLoginApi(account, password);
+            if (data && data.errCode !== 0) {
+                setErrMessage(data.message)
+            }
+            if (data && data.errCode === 0) {
+               // this.props.userLoginSuccess(data.user);
+                console.log('loging success');
+            }
+
+        } catch (e) {
+            if (e.response) {
+                if (e.response.data) {
+                    setErrMessage(e.response.data.message)
+                }
+            }
+            console.log('error message', e.response);
+        }
+       // console.log(account, password)
         // console.log(productName, productPrice, productImg);
     }
 
@@ -20,7 +40,7 @@ export const Login = () => {
                 <form
                     autoComplete="off"
                     className="form-group w-100"
-                    onSubmit={addProduct}
+                    onSubmit={handleLogin}
                 >
                     <h1>Login</h1>
                     <label htmlFor="account">Email or mobile phone number</label>
@@ -37,7 +57,7 @@ export const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
                     />
-                    <button>LOGIN</button>
+                    <button type="submit">LOGIN</button>
                 </form>
             </div>
         </div>

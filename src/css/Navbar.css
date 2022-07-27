@@ -9,10 +9,13 @@
     padding: 5px 50px 5px 50px;
 }
 .navbox .leftside {
-    width: 60px;
-    height: 60px;
     flex-direction: row;
     display: flex;
+}
+.navbox .rightside {
+  display: flex;
+  flex-direction: row; 
+  margin-right:50px;
 }
 .wrapper-nav-item {
     margin-left: 40px;
@@ -20,17 +23,18 @@
     display: flex;
 }
 .nav-item {
-    padding: 25px 25px;
+    padding: 20px 20px;
     align-items: center;
     display: flex;
 }
 .nav-item:hover .item{
+  
     color: rgba(255, 255, 255, 0.8);
     -webkit-transform: scale(1.15);
             transform: scale(1.15);
 }
 .item{
-    font-size: 20px;
+  font-size: 20px;
     color: rgba(255, 255, 255, 0.5);
 } 
 .link{
@@ -42,18 +46,19 @@
     padding: 10px;
 }
 .navbox .leftside .logo {
+  display: flex;
+  padding: 0px 20px 0px 20px;
+  align-items: center;
     color: rgb(254, 128, 51, 0.9);
     font-family: 'Dancing Script', cursive;
+    font-size: 35px;
 }
 .navbox .leftside .logo:hover {
     color: rgb(254, 128, 51, 1);
     -webkit-transform: scale(1.05);
         transform: scale(1.05);
 }
-.navbox .rightside {
-    display: flex;
-    flex-direction: row;
-}
+
 .navbox .rightside .button{
     font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
@@ -79,7 +84,7 @@
     cursor: pointer;
     border-radius: 10px;
   }
-  .dropbtn h1{
+  .dropbtn div{
     font-size: 20px;
     color: rgba(255, 255, 255, 0.5);
   }
@@ -93,19 +98,20 @@
     display: none;
     position: absolute;
     background-color: rgba(69, 76, 90, 0.3);
-    min-width: 160px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 2;
   }
   
   .dropdown-content a {
     color: rgba(255, 255, 255, 0.6);
+    background-color: #272b34;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     right: 0;
   }
-  .dropbtn:hover h1{
+  .dropbtn:hover p{
     color: rgba(255, 255, 255, 0.9);
     -webkit-transform: scale(1.15);
             transform: scale(1.15);

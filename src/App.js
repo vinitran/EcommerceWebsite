@@ -16,6 +16,7 @@ export class App extends Component {
         <Route path='/signup' element={<SignUp />} />
         <Route path="/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/typeProduct=:typeProduct" element={<Cart />} />
       </Routes>
     )
   }

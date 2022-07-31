@@ -1,15 +1,28 @@
-import React from 'react'
+
+import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { useParams } from "react-router-dom";
-import smartphone_card from '../data/smartphone_data.js'
+//import smartphone_card from '../data/smartphone_data.js'
 import '../css/ProductDetail.css'
+import { handleGetAllProductsApi } from '../services/productService'
 
 export const ProductDetail = () => {
+  const [products, setProducts] = useState([]);
+  
+  //fail do promise
+  useEffect(() => {
+     async function getData() {
+      let smartphone_card = await handleGetAllProductsApi();
+      setProducts(smartphone_card.products);
+    }
+    getData();
+  }, [])
+  console.log(products)
   const params = useParams();
   function checkId(item) {
-    return item.id == params.id;
+    return item.product_id === params.product_id;
   }
-  const item = smartphone_card.filter(item => checkId(item))[0];
+  const item = products.filter(item => checkId(item))[0];
   console.log(item);
 
   return (

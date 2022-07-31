@@ -1,11 +1,12 @@
 import React from 'react'
 import '../css/Home.css'
 import Navbar from './Navbar'
-import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
 import { Products } from './Products'
-
+import { useSelector, useDispatch } from 'react-redux'
 const SlideImage = () => {
+    const count = useSelector(state => state.counter.value);
+    console.log(count);
     return (
         <>
             <div className="wrapper-slide">

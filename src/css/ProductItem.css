@@ -1,5 +1,7 @@
 
-  
+  .wrapper-product-item{
+    text-decoration: none;
+  }
   .h3 {
     position: absolute;
     left: 0;
@@ -9,7 +11,7 @@
   }
   
  .product-card {
-    height: 400px;
+  height: 400px;
     border-radius: 15px;
     background-color: #272b34;
     -webkit-box-orient: vertical;

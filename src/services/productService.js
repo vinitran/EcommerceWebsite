@@ -8,4 +8,8 @@ const handleCreateNewProductApi = (data) => {
     return axios.post('api/create-new-product', data);
 }
 
-export { handleCreateNewProductApi };
+const handleGetAllProductsApi = () => {
+    return axios.get('/api/get-all-products')
+}
+
+export { handleCreateNewProductApi, handleGetAllProductsApi };

@@ -7,6 +7,8 @@ export const Login = () => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const [errMessage, setErrMessage] = useState('');
+    const [ableLogin, setAbleLogin] = useState(false);
+    const [error, setError] = useState('');
 
     const types = ['image/png', 'image/jpeg']
     const handleLogin = async (e) => {
@@ -32,7 +34,6 @@ export const Login = () => {
        // console.log(account, password)
         // console.log(productName, productPrice, productImg);
     }
-
     return (
         <div className="container-signup">
             <Navbar />
@@ -57,7 +58,15 @@ export const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
                     />
-                    <button type="submit">LOGIN</button>
+                    {
+                        ableLogin ?
+                            <Link to="/">
+                                <button>LOGIN</button>
+                            </Link>
+                            : 
+                            <button>LOGIN</button>
+                    }
+
                 </form>
             </div>
         </div>

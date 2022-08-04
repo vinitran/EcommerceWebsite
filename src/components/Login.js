@@ -21,6 +21,7 @@ export const Login = () => {
             if (data && data.errCode === 0) {
                // this.props.userLoginSuccess(data.user);
                 console.log('loging success');
+                setAbleLogin(true);
             }
 
         } catch (e) {

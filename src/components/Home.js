@@ -6,7 +6,7 @@ import { Products } from './Products'
 import { useSelector, useDispatch } from 'react-redux'
 const SlideImage = () => {
     const count = useSelector(state => state.counter.value);
-    console.log(count);
+    //console.log(count);
     return (
         <>
             <div className="wrapper-slide">

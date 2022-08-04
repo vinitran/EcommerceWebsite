@@ -1,49 +1,77 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar';
 import '../css/Cart.css';
+import smartphone_card from '../data/smartphone_data.js'
 
-const ProductCartItem = () => {
+const ProductCartItem = (props) => {
+    const [item, setItem] = useState(props.product);
+    const addAmount = () => {
+        let amount = item.amount + 1;
+        setItem({
+            ...item,
+            amount: amount
+        })
+        props.setTotalPrice(props.totalPrice + item.price)
+    }
+    const reduceAmount = () => {
+        if (item.amount > 0) {
+            let amount = item.amount - 1;
+            setItem({
+                ...item,
+                amount: amount
+            })
+        }
+        props.setTotalPrice(props.totalPrice - item.price)
+    }
+
     return (
-        <>
+        item != null ?
             <div className="cart_box">
                 <div className="left-side">
                     <div className="cart_img">
-                        <img src="./images/1.png" alt="" />
+                        <img src={item.thumb} alt="" />
                     </div>
                     <div className="wrapper-item">
-                        <div className="name">Rayes Alpha</div>
+                        <div className="name">{item.product_name}</div>
                     </div>
                     <div className="wrapper-item">
-                        <div className="price">Price: $999</div>
+                        <div className="price">${item.price}</div>
                     </div>
                 </div>
                 <div className="right-side">
                     <div className="btn-group">
-                        <button>+</button>
-                        <div className="wrapper-item amount">1</div>
-                        <button>-</button>
+                        <button className="button" onClick={() => reduceAmount()}>-</button>
+                        <div className="wrapper-item amount">{item.amount}</div>
+                        <button className="button" onClick={() => addAmount()}>+</button>
                     </div>
-                    <div className="last-price">999$</div>
-                    <button>remove</button>
+                    <div className="last-price">{item.amount * item.price}$</div>
+                    <button className="button">Remove</button>
                 </div>
             </div>
-        </>
+            :
+            null
     )
 }
 const Cart = () => {
+    const [totalPrice, setTotalPrice] = useState(0);
     return (
         <div className="container-cart">
             <Navbar />
-            <ProductCartItem />
-            <ProductCartItem />
-            <ProductCartItem />
-            <ProductCartItem />
-            <ProductCartItem />
-            <ProductCartItem />
+            <div className="wrapper-cart">
+            {
+                smartphone_card.map((item) =>
+                    <ProductCartItem
+                        product={item}
+                        setTotalPrice={setTotalPrice}
+                        totalPrice={totalPrice}
+                    />
+                )
+            }
             <div className="total-price">
-                <div>Total: $199999</div>
-                <button>payment</button>
-                </div>
+                <div>Total: ${totalPrice}</div>
+                <button className="button-payment">Payment</button>
+            </div>
+            </div>
         </div>
     );
 };

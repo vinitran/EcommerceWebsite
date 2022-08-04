@@ -1,28 +1,47 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar';
 import '../css/Cart.css';
-import smartphone_card from '../data/smartphone_data.js'
-
+import { handleGetCartInfoApi } from '../services/cartService';
+import { handleUpdateCartApi } from '../services/cartService';
+let getCartInfo = async () => {
+    let {cartInfo}  = await handleGetCartInfoApi(3)
+    return cartInfo
+  }
 const ProductCartItem = (props) => {
     const [item, setItem] = useState(props.product);
-    const addAmount = () => {
-        let amount = item.amount + 1;
+    console.log(props.totalPrice)
+
+    const addQuantity = () => {
+        item.quantity += 1;
         setItem({
             ...item,
-            amount: amount
+            quantity: item.quantity
         })
+        updateCart(item);
         props.setTotalPrice(props.totalPrice + item.price)
     }
-    const reduceAmount = () => {
-        if (item.amount > 0) {
-            let amount = item.amount - 1;
+    const reduceQuantity = () => {
+        if (item.quantity > 0) {
+            item.quantity -= 1;
             setItem({
                 ...item,
-                amount: amount
+                quantity: item.quantity
             })
+            updateCart(item);
+            props.setTotalPrice(props.totalPrice - item.price)
         }
-        props.setTotalPrice(props.totalPrice - item.price)
     }
+    
+        let updateCart = async (data) => {
+            console.log(data)
+        await handleUpdateCartApi(data)
+            
+          //console.log(cartInfo);
+            //props.isGetCart = false
+            //console.log(isGetCart)
+          //setCart(cartInfo.cart)
+        }
+        //console.log(props.totalPrice)
 
     return (
         item != null ?
@@ -40,11 +59,11 @@ const ProductCartItem = (props) => {
                 </div>
                 <div className="right-side">
                     <div className="btn-group">
-                        <button className="button" onClick={() => reduceAmount()}>-</button>
-                        <div className="wrapper-item amount">{item.amount}</div>
-                        <button className="button" onClick={() => addAmount()}>+</button>
+                        <button className="button" onClick={() => reduceQuantity()}>-</button>
+                        <div className="wrapper-item quantity">{item.quantity}</div>
+                        <button className="button" onClick={() => addQuantity()}>+</button>
                     </div>
-                    <div className="last-price">{item.amount * item.price}$</div>
+                    <div className="last-price">{item.quantity * item.price}$</div>
                     <button className="button">Remove</button>
                 </div>
             </div>
@@ -52,14 +71,35 @@ const ProductCartItem = (props) => {
             null
     )
 }
+
 const Cart = () => {
     const [totalPrice, setTotalPrice] = useState(0);
+    const [cart, setCart] = useState([])
+    //const [isGetCart, setIsGetCart] = useState(false);
+    let getCartInfo = async () => {
+        let {cartInfo}  = await handleGetCartInfoApi(3)
+        //console.log(cartInfo);
+          //setIsGetCart(true)
+          //console.log(cartInfo.totalPrice[0].totalPrice)
+          setTotalPrice(cartInfo.totalPrice[0].totalPrice)
+        setCart(cartInfo.cart)
+      }
+    useEffect(() => {
+       // console.log(isGetCart)
+        //setIsGetCart(false)
+        //if(!isGetCart) {
+            getCartInfo();
+      
+    //}
+        }, []);
+        
+    console.log(cart)
     return (
         <div className="container-cart">
             <Navbar />
             <div className="wrapper-cart">
             {
-                smartphone_card.map((item) =>
+                cart.map((item) =>
                     <ProductCartItem
                         product={item}
                         setTotalPrice={setTotalPrice}

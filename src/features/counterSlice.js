@@ -4,6 +4,7 @@ export const counterSlice = createSlice({
   name: 'counter',
   initialState: {
     isLogin: false,
+    user_id: null
   },
   reducers: {
     Login: state => {

@@ -49,11 +49,11 @@ export const Products = () => {
     <div className="container">
       <div className="row">
         {
-          smartphone_card.map((product) =>
-            <div className="col-md-4 col-sm-6 col-lg-3" >
-              <ProductItem key={product.id} product={smartphone_card[product.id - 1]} />
-            </div>
-          )
+         products.map((number) =>
+         <div className="col-md-4 col-sm-6 col-lg-3" >
+           <ProductItem key={number.product_id} product={products[number.product_id - 1]} />
+         </div>
+         )
         }
       </div>
     </div>

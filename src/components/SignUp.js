@@ -1,21 +1,46 @@
 import React, { useState } from 'react'
 import '../css/Common.css'
 import Navbar from './Navbar';
+import { handleSignUpApi } from '../services/userService';
 export const SignUp = () => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [first_name, setfirst_name] = useState('');
+    const [last_name, setlast_name] = useState('');
 
-    const [error, setError] = useState('');
-    const addAccount = (e) => {
+    const [errMessage, setErrMessage] = useState('');
+    const addAccount = async (e) => {
         e.preventDefault();
+        let userData = {email: account, password, first_name, last_name, address: ''}
         if (confirmPassword !== password) {
-            setError('Passwords do not match');
+            setErrMessage('Passwords do not match');
         } else {
-            console.log(account, password, firstName, lastName)
+            try {
+                //console.log
+                let data = await handleSignUpApi(userData);
+                if (data && data.errCode !== 0) {
+                    setErrMessage(data.message)
+                }
+                if (data && data.errCode === 0) {
+                   // this.props.userLoginSuccess(data.user);
+                    console.log('Sign up success');
+                }
+    
+            } catch (e) {
+                if (e.response) {
+                    if (e.response.data) {
+                        setErrMessage(e.response.data.message)
+                    }
+            
+                console.log('error message', errMessage);
+            }
+           // console.log(account, password)
+            // console.log(productName, productPrice, productImg);
         }
+    
+            console.log(userData)
+    }
     }
     return (
         <div className="container-signup">
@@ -49,23 +74,23 @@ export const SignUp = () => {
                         value={confirmPassword}
                     />
                     <div className='d-flex align-items-end flex-column'>
-                        {error && <span className="mt-2 error">{error}</span>}
+                        {errMessage && <span className="mt-2 error">{errMessage}</span>}
                     </div>
                     <label htmlFor="firstname">First Name</label>
                     <input
                         type="text"
                         required
-                        onChange={(e) => setFirstName(e.target.value)}
-                        value={firstName}
+                        onChange={(e) => setfirst_name(e.target.value)}
+                        value={first_name}
                     />
                     <label htmlFor="lastname ">Last Name</label>
                     <input
                         type="text"
                         required
-                        onChange={(e) => setLastName(e.target.value)}
-                        value={lastName}
+                        onChange={(e) => setlast_name(e.target.value)}
+                        value={last_name}
                     />
-                    <button>SIGN UP</button>
+                    <button type="submit">SIGN UP</button>
                 </form>
             </div>
         </div>

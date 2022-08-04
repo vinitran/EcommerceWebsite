@@ -6,18 +6,18 @@ export const SignUp = () => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [first_name, setfirst_name] = useState('');
+    const [last_name, setlast_name] = useState('');
 
     const [errMessage, setErrMessage] = useState('');
     const addAccount = async (e) => {
         e.preventDefault();
-        let userData = {email: account, password, firstName, lastName, address: ''}
+        let userData = {email: account, password, first_name, last_name, address: ''}
         if (confirmPassword !== password) {
             setErrMessage('Passwords do not match');
         } else {
             try {
-                
+                //console.log
                 let data = await handleSignUpApi(userData);
                 if (data && data.errCode !== 0) {
                     setErrMessage(data.message)
@@ -80,15 +80,15 @@ export const SignUp = () => {
                     <input
                         type="text"
                         required
-                        onChange={(e) => setFirstName(e.target.value)}
-                        value={firstName}
+                        onChange={(e) => setfirst_name(e.target.value)}
+                        value={first_name}
                     />
                     <label htmlFor="lastname ">Last Name</label>
                     <input
                         type="text"
                         required
-                        onChange={(e) => setLastName(e.target.value)}
-                        value={lastName}
+                        onChange={(e) => setlast_name(e.target.value)}
+                        value={last_name}
                     />
                     <button type="submit">SIGN UP</button>
                 </form>

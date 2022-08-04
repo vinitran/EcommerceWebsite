@@ -12,4 +12,9 @@ const handleGetAllProductsApi = () => {
     return axios.get('/api/get-all-products')
 }
 
-export { handleCreateNewProductApi, handleGetAllProductsApi };
+const handleGetProductInfoApi = (id) => {
+    console.log(id)
+    return axios.get(`/api/get-product-info?product_id=${id}`)
+}
+
+export { handleCreateNewProductApi, handleGetAllProductsApi, handleGetProductInfoApi };

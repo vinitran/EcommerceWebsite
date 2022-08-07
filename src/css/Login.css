@@ -1,0 +1,66 @@
+.container-login{
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #272b34;
+    width: 100%;
+}
+.wrapper-login{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.box-login{
+    margin-left: 60%;
+    display: block;
+    background-color: #454c5a;
+    width: 400px;
+    padding: 10px 20px;
+    border-radius:5px;
+
+}
+.box-login .wrapper-title{
+    color: rgba(255,255,255,1);
+    font-size: 30px;
+    font-weight: bold;
+}
+.box-login .input{
+    color: rgba(255,255,255,1);
+    font-size: 30px;
+    margin-top: 25px;
+}
+.box-login button{
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 12px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+    padding: 7px 24px;
+    background-color: rgb(254, 128, 51, 0.9);
+    border: 2px solid transparent;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    margin-top: 35px;
+  }
+  .box-login button:hover{
+    background-color: rgba(254, 128, 51, 1);
+  }
+  .wrapper-newbie {
+    margin-top: 35px;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  .wrapper-newbie .newbie{
+    color: rgb(255, 255, 255);
+  }
+  .wrapper-newbie .register{
+    color: rgb(254, 128, 51, 1);
+}
+.container-login .in-middle{
+    display: flex;
+    justify-content: center;
+}

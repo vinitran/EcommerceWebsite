@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import '../css/Navbar.css'
 function Navbar() {
   const isLogin = useSelector(state => state.counter.isLogin);
+  console.log(isLogin)
   return (
     <div className="navbox">
       <div className="leftside">

@@ -48,7 +48,13 @@ export const Products = () => {
   return (
     <div className="container">
       <div className="row">
-        {listItems}
+        {
+         products.map((number) =>
+         <div className="col-md-4 col-sm-6 col-lg-3" >
+           <ProductItem key={number.product_id} product={products[number.product_id - 1]} />
+         </div>
+         )
+        }
       </div>
     </div>
   )

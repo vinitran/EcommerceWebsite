@@ -102,7 +102,7 @@
     border: 1px solid lightseagreen;
   }
 
-  .button:hover {
+  .details .button:hover {
     background-color: #fe8033;
     color: #fff;
   }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../css/ProductItem.css'
 export const ProductItem = (props) => {
-   console.log(props.product);
+   //console.log(props.product);
   return (
       props.product ?
         <Link to={`/${props.product.product_id}`} className="wrapper-product-item">

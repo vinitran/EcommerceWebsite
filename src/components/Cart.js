@@ -1,47 +1,68 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar';
 import '../css/Cart.css';
-import { handleGetCartInfoApi } from '../services/cartService';
-import { handleUpdateCartApi } from '../services/cartService';
-let getCartInfo = async () => {
-    let {cartInfo}  = await handleGetCartInfoApi(3)
-    return cartInfo
-  }
+import { handleGetCartInfoApi, handleUpdateCartApi, handleRemoveProductApi } from '../services/cartService';
+
+
 const ProductCartItem = (props) => {
     const [item, setItem] = useState(props.product);
-    console.log(props.totalPrice)
 
+    //console.log(props.totalPrice)
+    //console.log(item.quantity)
+
+    //console.log(items)
     const addQuantity = () => {
         item.quantity += 1;
         setItem({
             ...item,
             quantity: item.quantity
         })
-        updateCart(item);
+        //updateCart(item);
+        update();
         props.setTotalPrice(props.totalPrice + item.price)
     }
+
     const reduceQuantity = () => {
-        if (item.quantity > 0) {
+        if (item.quantity > 1) {
             item.quantity -= 1;
             setItem({
                 ...item,
                 quantity: item.quantity
             })
-            updateCart(item);
+            update();
             props.setTotalPrice(props.totalPrice - item.price)
+        } else {
+            removeProduct(item.product_id)
         }
+
     }
-    
-        let updateCart = async (data) => {
-            console.log(data)
-        await handleUpdateCartApi(data)
-            
-          //console.log(cartInfo);
-            //props.isGetCart = false
-            //console.log(isGetCart)
-          //setCart(cartInfo.cart)
-        }
-        //console.log(props.totalPrice)
+    //console.log(props.cart, item.quantity)
+    const update = () => {
+        const updatedCart = props.cart.map(product => {
+            //console.log(product.product_id, item.quantity)
+            if (product.product_id === item.product_id && product.quantity !== item.quantity) {
+                return { ...product, quantity: item.quantity }
+            } else {
+                return product;
+            }
+        })
+        props.setCart(updatedCart);
+       
+    }
+         
+ 
+    const removeProduct = async (product_id, user_id) => {
+        console.log(product_id)
+        const updatedCart = props.cart.filter(product => {
+            return product.product_id !== item.product_id
+        })
+        props.setTotalPrice(props.totalPrice - item.price*item.quantity)
+        props.setCart(updatedCart);
+        await handleRemoveProductApi(product_id, 3);
+    }
+
+
+    //console.log(props.totalPrice)
 
     return (
         item != null ?
@@ -64,7 +85,8 @@ const ProductCartItem = (props) => {
                         <button className="button" onClick={() => addQuantity()}>+</button>
                     </div>
                     <div className="last-price">{item.quantity * item.price}$</div>
-                    <button className="button">Remove</button>
+                   
+                    <button className="button" onClick={() => removeProduct(item.product_id)}>Remove</button>
                 </div>
             </div>
             :
@@ -75,42 +97,48 @@ const ProductCartItem = (props) => {
 const Cart = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [cart, setCart] = useState([])
-    //const [isGetCart, setIsGetCart] = useState(false);
-    let getCartInfo = async () => {
-        let {cartInfo}  = await handleGetCartInfoApi(3)
-        //console.log(cartInfo);
-          //setIsGetCart(true)
-          //console.log(cartInfo.totalPrice[0].totalPrice)
-          setTotalPrice(cartInfo.totalPrice[0].totalPrice)
-        setCart(cartInfo.cart)
-      }
+
     useEffect(() => {
-       // console.log(isGetCart)
-        //setIsGetCart(false)
-        //if(!isGetCart) {
-            getCartInfo();
-      
-    //}
-        }, []);
-        
-    console.log(cart)
+        let getCartInfo = async () => {
+            let { cartInfo } = await handleGetCartInfoApi(3)
+            setTotalPrice(cartInfo.totalPrice[0].totalPrice)
+            setCart(cartInfo.cart)
+        }
+        getCartInfo();
+        console.log(cart)
+        //}
+    }, [cart.length]);
+    //console.log(cart.length)
+    let updateCart = async (data) => {
+        console.log(data)
+        await handleUpdateCartApi(data)
+
+    }
+
+
+
+    
     return (
         <div className="container-cart">
             <Navbar />
             <div className="wrapper-cart">
-            {
-                cart.map((item) =>
-                    <ProductCartItem
-                        product={item}
-                        setTotalPrice={setTotalPrice}
-                        totalPrice={totalPrice}
-                    />
-                )
-            }
-            <div className="total-price">
-                <div>Total: ${totalPrice}</div>
-                <button className="button-payment">Payment</button>
-            </div>
+                {
+                    cart.map((item) =>
+                        <ProductCartItem
+                            key={item.product_id}
+                            product={item}
+                            setTotalPrice={setTotalPrice}
+                            totalPrice={totalPrice}
+                            setCart={setCart}
+                            cart={cart}
+                           
+                        />
+                    )
+                }
+                <div className="total-price">
+                    <div>Total: ${totalPrice}</div>
+                    <button className="button-payment" onClick={() => { updateCart(cart) }}>Payment</button>
+                </div>
             </div>
         </div>
     );

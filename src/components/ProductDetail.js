@@ -2,19 +2,23 @@ import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faCreditCard, faBars } from '@fortawesome/free-solid-svg-icons'
-
 import Navbar from './Navbar'
-import { useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import smartphone_card from '../data/smartphone_data.js'
 import { SlideImage } from "./SlideImage"
 
 
 import '../css/ProductDetail.css'
+import { Alert } from 'bootstrap';
 
 export const ProductDetail = () => {
   const params = useParams();
+  let navigate = useNavigate();
   function checkId(item) {
     return item.id == params.id;
+  }
+  const BuyNowCommit = (e) => {
+    navigate("/cart");
   }
   const item = smartphone_card.filter(item => checkId(item))[0];
   const image = [
@@ -77,7 +81,11 @@ export const ProductDetail = () => {
                   <FontAwesomeIcon icon={faCartShopping} className="icon" />
                   <div>Add to cart</div>
                 </button>
-                <button className="inLine">
+                <button className="inLine" onClick={(e) =>
+                  <div class="alert alert-primary" role="alert">
+                    This is a primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                  </div>
+                }>
                   <FontAwesomeIcon icon={faCreditCard} className="icon" />
                   <div>Buy now</div>
                 </button>

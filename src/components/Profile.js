@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import Navbar from './Navbar';
 import "../css/Profile.css";
 export const Profile = () => {
-
-
     const [user, setUser] = useState({
         fullName: 'Tran Thanh Vinh',
         email: 'vinitran124@gmail.com',

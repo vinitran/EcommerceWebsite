@@ -1,9 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useCookies } from 'react-cookie';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping, faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 import '../css/Navbar.css'
 function Navbar() {
-  const isLogin = useSelector(state => state.counter.isLogin);
+  const [cookies, setCookie] = useCookies();
+  const Logout = (e) => {
+    e.preventDefault();
+    setCookie('login', false, { path: '/' });
+    setCookie('userId', null, { path: '/' });
+  };
   return (
     <div className="navbox">
       <div className="leftside">
@@ -20,9 +27,15 @@ function Navbar() {
                 <div className="item">Products</div>
               </button>
               <div className="dropdown-content">
-                <a href={`/typeProduct=${"Smartphone"}`}>Smartphone</a>
-                <a href={`/typeProduct=${"Laptop"}`}>Laptop</a>
-                <a href={`/typeProduct=${"Headphone"}`}>Headphone</a>
+                <button >
+                  <Link className="button-link" to={`/typeProduct=${"Smartphone"}`}>Smartphone</Link>
+                </button>
+                <button >
+                  <Link className="button-link" to={`/typeProduct=${"Laptop"}`}>Laptop</Link>
+                </button>
+                <button >
+                  <Link className="button-link" to={`/typeProduct=${"Headphone"}`}>Headphone</Link>
+                </button>
               </div>
             </div>
           </div>
@@ -41,30 +54,47 @@ function Navbar() {
         />
       </div>
       <div className="rightside">
-        {isLogin ?
-          <div className="nav-item">
-            <div className="dropdown">
-              <button className="dropbtn">
-                <div className="item">Trần Thành Vinh</div>
-              </button>
-              <div className="dropdown-content">
-                <a href="/profile">My Profile</a>
-                <a href="/cart">My Cart</a>
-                <a href="/myProduct">My Product</a>
-                <a href="/">Log Out</a>
+        {
+          cookies.login == "true" ?
+            <>
+              <Link to="/cart" >
+                <FontAwesomeIcon icon={faCartShopping} className="icon" />
+              </Link>
+              <Link to="/addproduct" >
+                <FontAwesomeIcon icon={faSquarePlus} className="icon" />
+              </Link>
+              <div className="nav-item">
+                <div className="dropdown">
+                  <button className="dropbtn">
+                    <div className="item">Trần Thành Vinh</div>
+                  </button>
+                  <div className="dropdown-content">
+                    <button >
+                      <Link className="button-link" to="/profile">My Profile</Link>
+                    </button>
+                    <button >
+                      <Link className="button-link" to="/cart">My Cart</Link>
+                    </button>
+                    <button >
+                      <Link className="button-link" to="/mysellingproduct">My Product</Link>
+                    </button>
+                    <button onClick={(e) => Logout(e)}>
+                      <div className="logout">Log Out</div>
+                    </button>
+                  </div>
+                </div>
               </div>
+            </>
+            :
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Link to='/signup' className='link'>
+                {/* <button type="button" className="button">SIGN UP</button> */}
+                <button type="button" className="btn btn-outline-secondary button">Sign Up</button>
+              </Link>
+              <Link to='/login' className='link'>
+                <button type="button" className="btn btn-outline-secondary button">Sign In</button>
+              </Link>
             </div>
-          </div>
-          :
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Link to='/signup' className='link'>
-              {/* <button type="button" className="button">SIGN UP</button> */}
-              <button type="button" className="btn btn-outline-secondary button">Sign Up</button>
-            </Link>
-            <Link to='/login' className='link'>
-              <button type="button" className="btn btn-outline-secondary button">Sign In</button>
-            </Link>
-          </div>
         }
       </div>
     </div >

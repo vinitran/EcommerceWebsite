@@ -15,8 +15,17 @@
 .navbox .rightside {
   display: flex;
   flex-direction: row; 
-  justify-content: end;
-  width: 600px;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 300px;
+  padding: 0px 20px;
+}
+.rightside .icon{
+  color:rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+}
+.rightside .icon:hover{
+  color:rgba(255, 255, 255, 0.8);
 }
 .wrapper-nav-item {
     margin-left: 40px;
@@ -85,32 +94,35 @@
     position: absolute;
     background-color: rgba(69, 76, 90, 0.3);
     min-width: 150px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 2;
+    box-shadow: 0px 8px 16px 0px rgb(56, 61, 71, 0.5);
+    z-index: 2; 
   }
-  
-  .dropdown-content a {
-    color: rgba(255, 255, 255, 0.6);
-    background-color: #272b34;
-    padding: 12px 16px;
+  .dropdown-content button{
+    background-color: rgb(39, 43, 52);
+    min-width: 150px;
+    font-size: 17px;
+    padding: 10px 5px 10px 15px;
+    text-align: left;
     text-decoration: none;
-    display: block;
-    right: 0;
-  }
-  .dropbtn:hover p{
-    color: rgba(255, 255, 255, 0.9);
-    -webkit-transform: scale(1.15);
-            transform: scale(1.15);
-  }
-  .dropdown-content a:hover {
-    color: rgba(255, 255, 255, 0.9);
-    background-color: #fe8134;
-}
+  }   
+  .dropdown-content button:hover{
+    background-color: rgb(56, 61, 71);
+  }  
+  .dropdown-content button .button-link{
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+  }    
+  .logout{
+    color: rgba(255, 255, 255, 0.5)
+  }    
   .dropdown:hover .dropdown-content {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
   .search{
     padding: 20px;
+    display: flex;
+    align-items: center;
   }
   
   .search-input{

@@ -7,7 +7,6 @@
     text-decoration: none;
 }
 .container{
-  height: 100vh;
 }
 .inLine{
   display: flex;

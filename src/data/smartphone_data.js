@@ -3,7 +3,7 @@ const smartphone_card = [
         id: 1,
         product_name: "Iphone 13 Promax",
         description: "Hands-free, Hads-on Mushc Experience",
-        price: 999,
+        price: 9999,
         currency: "$",
         thumb: "./images/iphone13prm.png",
         amount: 2,

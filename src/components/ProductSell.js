@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar';
-import '../css/Cart.css';
+import '../css/ProductSell.css';
 import smartphone_card from '../data/smartphone_data.js'
 
 const ProductCartItem = (props) => {
@@ -52,7 +52,7 @@ const ProductCartItem = (props) => {
             null
     )
 }
-const Cart = () => {
+const ProductSell = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     return (
         <div className="container-cart">
@@ -76,4 +76,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default ProductSell;

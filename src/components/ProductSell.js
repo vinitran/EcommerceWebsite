@@ -1,53 +1,39 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import Navbar from './Navbar';
 import '../css/ProductSell.css';
 import smartphone_card from '../data/smartphone_data.js'
 
 const ProductCartItem = (props) => {
     const [item, setItem] = useState(props.product);
-    const addAmount = () => {
-        let amount = item.amount + 1;
-        setItem({
-            ...item,
-            amount: amount
-        })
-        props.setTotalPrice(props.totalPrice + item.price)
-    }
-    const reduceAmount = () => {
-        if (item.amount > 0) {
-            let amount = item.amount - 1;
-            setItem({
-                ...item,
-                amount: amount
-            })
-        }
-        props.setTotalPrice(props.totalPrice - item.price)
-    }
-
+    const DeleteCommit = () => {
+        console.log("a");
+    };
     return (
         item != null ?
-            <div className="cart_box">
-                <div className="left-side">
-                    <div className="cart_img">
-                        <img src={item.thumb} alt="" />
+            <Link to={`/mysellingproduct/${item.id}`} className="link">
+                <div className="cart-box">
+                    <div className="left-side">
+                        <div className="cart-img">
+                            <img src={item.thumb} alt="" />
+                        </div>
+                        <div className="wrapper-item">
+                            <div className="name">{item.product_name}</div>
+                        </div>
+                        <div className="wrapper-item">
+                            <div className="price">${item.price}</div>
+                        </div>
                     </div>
-                    <div className="wrapper-item">
-                        <div className="name">{item.product_name}</div>
-                    </div>
-                    <div className="wrapper-item">
-                        <div className="price">${item.price}</div>
+                    <div className="right-side">
+                        <div className="btn-group">
+                            <div className="wrapper-item amount">Amount: {item.amount}</div>
+                        </div>
                     </div>
                 </div>
-                <div className="right-side">
-                    <div className="btn-group">
-                        <button className="button" onClick={() => reduceAmount()}>-</button>
-                        <div className="wrapper-item amount">{item.amount}</div>
-                        <button className="button" onClick={() => addAmount()}>+</button>
-                    </div>
-                    <div className="last-price">{item.amount * item.price}$</div>
-                    <button className="button">Remove</button>
-                </div>
-            </div>
+            </Link>
             :
             null
     )
@@ -57,7 +43,8 @@ const ProductSell = () => {
     return (
         <div className="container-cart">
             <Navbar />
-            <div className="wrapper-cart">
+            <div className="wrapper-card">
+                <div className="title">My Product</div>
                 {
                     smartphone_card.map((item) =>
                         <ProductCartItem
@@ -67,10 +54,6 @@ const ProductSell = () => {
                         />
                     )
                 }
-                <div className="total-price">
-                    <div>Total: ${totalPrice}</div>
-                    <button className="button-payment">Payment</button>
-                </div>
             </div>
         </div>
     );

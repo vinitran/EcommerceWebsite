@@ -5,11 +5,9 @@ import { faCartShopping, faCreditCard, faBars } from '@fortawesome/free-solid-sv
 import Navbar from './Navbar'
 import { Navigate, useParams, useNavigate } from "react-router-dom";
 import smartphone_card from '../data/smartphone_data.js'
-import { SlideImage } from "./SlideImage"
 
 
 import '../css/ProductDetail.css'
-import { Alert } from 'bootstrap';
 
 export const ProductDetail = () => {
   const params = useParams();

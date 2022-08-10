@@ -1,86 +1,25 @@
-.wrapper{
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: #272b34;
-}
-.link{
-    text-decoration: none;
-}
 
-.inLine{
-  display: flex;
-  flexDirection: row 
-}
-.details{
+  .in-column{
     display: flex;
-    flex-wrap: wrap;
-    padding: 60px 0px 0px 0px;
+    flex-direction: column;
   }
-  .details .big-img{
-    width: 40%;
-    overflow: hidden;
-    margin: 25px;
-  }
-  .big-img .image{
-    height: 100%;
-    max-height: 400px;
-    display: block;
-    object-fit: cover;
-  }  
-  .details .box{
-    width: 60%;
-    margin: 25px;
-    flex:1;
-  }
-  .box .top{
-    margin-bottom: 15px;
-    
-  }
-  .box .top .type{
-    font-size: 15px;
-    font-weight: 100;
-    color:rgba(255, 255, 255, 0.9);
-  }
-  .box .top .name{
+  .box .top .name-input{
     letter-spacing: 2px;
     font-size: 35px;
     color:rgba(255, 255, 255, 0.9);
+    background-color:#272b34;
+    border-top: 1px solid #272b34;
+    border: none;
   }
-  .top .selled{
-    margin-top:5px;
-  }
-  .box .top .shop{
+  .box .top .type-input{
+    margin-top: 5px;
     font-size: 15px;
-    font-weight: 100;
     color:rgba(255, 255, 255, 0.6);
+    background-color:#272b34;
+    border: none;
+
   }
-  .shop .shop-name{
-    margin-left: 5px;
-    color:rgb(32, 129, 226);
-  }
-  .box .top .product-avaiable{
-    margin-left:20px;
-    font-size: 15px;
-    font-weight: 100;
-    color:rgba(255, 255, 255, 0.6);
-  }
-  .product-avaiable .available-quantity{
-    margin-right: 5px;
-    color:rgb(32, 129, 226);
-  }
-  .box .middle-time{
-    background-color: #454c5a;
-    padding: 10px 20px;
-    display:flex;
-    align-items: center;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin-bottom:2px;
-  }
-  .middle-time .timeselling{
-    font-size: 15px;
-    color: rgb(229, 232, 235);
-  }
+
   .box .middle-price{
     flex-direction:column;
     background-color: #454c5a;
@@ -89,9 +28,20 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
-  .middle-price .price-text{
+  .middle-price .price-input{
+    margin-top: 5px;
     font-size: 15px;
-    color: rgba(229, 232, 235, 0.6);
+    color:rgba(255, 255, 255, 1);
+    background-color:#454c5a;
+    font-size: 45px;
+    border: none;
+  }
+  .description-input{
+    margin-top: 5px;
+    font-size: 15px;
+    color:rgba(255, 255, 255, 0.7);
+    background-color:#454c5a;
+    border: none;
   }
   .middle-price .price{
     font-weight: 500px;
@@ -126,6 +76,7 @@
   .wrapper-description {
     display:flex;
     flex-direction: column;
+    margin-bottom:100px;
   }
   .wrapper-description .wrapper-title {
     display:flex;

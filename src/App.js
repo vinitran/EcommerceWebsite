@@ -11,6 +11,8 @@ import { TypeProduct } from './components/TypeProduct';
 import { useSelector } from 'react-redux'
 import { Profile } from './components/Profile';
 import ProductSell from './components/ProductSell';
+import { ProductSellDetail } from './components/ProductSellDetail';
+import { Search } from './components/Search';
 
 const App = () => {
   const [cookies] = useCookies();
@@ -21,6 +23,7 @@ const App = () => {
       <Route path='/signup' element={<SignUp />} />
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/typeProduct=:typeProduct" element={<TypeProduct />} />
+      <Route path="/search/:search" element={<Search />} />
       {
         cookies.login == "true" ?
           <>
@@ -28,6 +31,7 @@ const App = () => {
             <Route path='/addproduct' element={<AddProduct />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/mysellingproduct' element={<ProductSell />} />
+            <Route path='/mysellingproduct/:id' element={<ProductSellDetail />} />
           </>
           : null
       }

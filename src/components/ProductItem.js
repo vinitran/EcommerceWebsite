@@ -16,12 +16,12 @@ export const ProductItem = (props) => {
             <h1>{props.product.product_name}</h1>
             <h2>Smartphone</h2>
             <p className="price">{props.product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-            <div className="button">
+            <button className="button">
               <div className="inline">
                 <FontAwesomeIcon icon={faCartShopping} className="icon" />
                 <div>Add to cart</div>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </Link>

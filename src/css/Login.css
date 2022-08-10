@@ -8,6 +8,8 @@
     height: 100vh;
     display: flex;
     align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 .box-login{
     margin-left: 60%;

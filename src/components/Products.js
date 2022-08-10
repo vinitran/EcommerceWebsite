@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { ProductItem } from './ProductItem'
 import headphone_card from '../data/headphone_data.js'
 import smartphone_card from '../data/smartphone_data.js'
@@ -7,7 +7,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 
 export const Products = () => {
   const [currentpage, setCurrentpage] = useState('1');
-
+  const [list, setList] = useState(smartphone_card);
   const radios = [
     { value: '1' },
     { value: '2' },
@@ -17,13 +17,19 @@ export const Products = () => {
     { value: '6' },
     { value: '7' },
   ];
+  useEffect(() => {
+    if(currentpage !=1) {
+      setList(headphone_card);
+
+    }
+  }, [currentpage]);
   return (
     <div className="container mb-5">
       <div className="row">
         {
-          smartphone_card.map((product) =>
+          list.map((product) =>
             <div className="col-md-4 col-sm-6 col-lg-3" >
-              <ProductItem key={product.id} product={smartphone_card[product.id - 1]} />
+              <ProductItem key={product.id} product={list[product.id - 1]} />
             </div>
           )
         }

@@ -68,7 +68,7 @@ const Cart = () => {
                     )
                 }
                 <div className="total-price">
-                    <div>Total: ${totalPrice}</div>
+                    <div className="total-price-text">Total: ${totalPrice}</div>
                     <button className="button-payment">Payment</button>
                 </div>
             </div>

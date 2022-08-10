@@ -80,7 +80,7 @@ export const Profile = () => {
                                     name="customRadioInline1"
                                     className="custom-control-input"
                                     onClick={(e) => setSex(e.target.value)}
-                                    value={radio.value}
+                                    value={sex}
                                 />
                                 <label
                                     className="custom-control-label sex"

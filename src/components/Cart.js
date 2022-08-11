@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar';
 import '../css/Cart.css';
 import smartphone_card from '../data/smartphone_data.js'
+import { useNavigate } from "react-router-dom";
 
 const ProductCartItem = (props) => {
     const [item, setItem] = useState(props.product);
@@ -54,6 +55,11 @@ const ProductCartItem = (props) => {
 }
 const Cart = () => {
     const [totalPrice, setTotalPrice] = useState(0);
+    let navigate = useNavigate();
+    const PaymentCommit = () => {
+        let order_id = 1;
+        navigate(`/userorder/detail/${order_id}`);
+    };
     return (
         <div className="container-cart">
             <Navbar />
@@ -69,7 +75,7 @@ const Cart = () => {
                 }
                 <div className="total-price">
                     <div className="total-price-text">Total: ${totalPrice}</div>
-                    <button className="button-payment">Payment</button>
+                    <button className="button-payment" onClick={e => PaymentCommit()}>Payment</button>
                 </div>
             </div>
         </div>

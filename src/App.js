@@ -13,7 +13,8 @@ import { Profile } from './components/Profile';
 import ProductSell from './components/ProductSell';
 import { ProductSellDetail } from './components/ProductSellDetail';
 import { Search } from './components/Search';
-
+import MyCustomers from './components/MyCustomers';
+import MyCustomerDetail from './components/MyCustomerDetail';
 const App = () => {
   const [cookies] = useCookies();
   return (
@@ -31,6 +32,8 @@ const App = () => {
             <Route path='/addproduct' element={<AddProduct />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/mysellingproduct' element={<ProductSell />} />
+            <Route path='/mycustomers' element={<MyCustomers />} />
+            <Route path='/mycustomers/detail/:id' element={<MyCustomerDetail />} />
             <Route path='/mysellingproduct/:id' element={<ProductSellDetail />} />
           </>
           : null

@@ -4,13 +4,24 @@ import { useCookies } from 'react-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 import '../css/Navbar.css'
+import { useNavigate } from "react-router-dom";
+
 function Navbar() {
   const [cookies, setCookie] = useCookies();
+  let navigate = useNavigate();
   const Logout = (e) => {
     e.preventDefault();
     setCookie('login', false, { path: '/' });
     setCookie('userId', null, { path: '/' });
   };
+  const [search, setSearch] = useState(null)
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      console.log('do validate')
+    navigate(`/search/${search}`);
+    }
+  }
+
   return (
     <div className="navbox">
       <div className="leftside">
@@ -51,6 +62,8 @@ function Navbar() {
           className="form-control search-input"
           placeholder="Search"
           aria-label="Search"
+          onKeyDown={handleKeyDown}
+          onChange={e => setSearch(e.target.value)}
         />
       </div>
       <div className="rightside">

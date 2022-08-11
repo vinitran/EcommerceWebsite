@@ -14,7 +14,7 @@ const SellProductCart = (props) => {
     };
     return (
         item != null ?
-            <Link to={`/mycustomers/detail/${item.order_id}`} className="link">
+            <Link to={`/userorder/detail/${item.order_id}`} className="link">
                 <div className="cart-box">
                     <div className="left-side">
                         <div className="order-id">
@@ -23,7 +23,7 @@ const SellProductCart = (props) => {
                             </div>
                         </div>
                         <div className="buyer">
-                            <div>Customer's name: {item.name}</div>
+                            <div>Shop's name: {item.name}</div>
                         </div>
                     </div>
                     <div className="right-side">
@@ -40,8 +40,8 @@ const SellProductCart = (props) => {
             null
     )
 }
-const MyCustomers = () => {
-    const [buyers, setBuyers] = useState([
+const UserOrder = () => {
+    const [bill, setBill] = useState([
         {
             name: "Tran Thanh Vinh",
             amount_product: 2,
@@ -67,7 +67,7 @@ const MyCustomers = () => {
                 <div className="title">My Customers</div>
                 <div className="wrapper-sell-product">
                     {
-                        buyers.map((item) =>
+                        bill.map((item) =>
                             <SellProductCart
                                 product={item}
                             />
@@ -79,4 +79,4 @@ const MyCustomers = () => {
     );
 };
 
-export default MyCustomers;
+export default UserOrder;

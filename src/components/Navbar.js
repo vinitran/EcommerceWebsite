@@ -91,6 +91,12 @@ function Navbar() {
                     <button >
                       <Link className="button-link" to="/mysellingproduct">My Product</Link>
                     </button>
+                    <button >
+                      <Link className="button-link" to="/mycustomers">My Order</Link>
+                    </button>
+                    <button >
+                      <Link className="button-link" to="/userorder">My Bill</Link>
+                    </button>
                     <button onClick={(e) => Logout(e)}>
                       <div className="logout">Log Out</div>
                     </button>
